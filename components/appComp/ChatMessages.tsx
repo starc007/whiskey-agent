@@ -1,4 +1,5 @@
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Message {
   role: "user" | "assistant";
@@ -15,27 +16,28 @@ const ChatMessages = ({ messages }: ChatMessagesProps) => {
   }
 
   return (
-    <div className="flex-1 overflow-hidden px-4">
-      <div className="h-full max-w-5xl mx-auto relative">
-        <div className="absolute inset-0 overflow-y-auto p-4 space-y-4 rounded-lg border border-primary/10">
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`flex ${
-                message.role === "user" ? "justify-end" : "justify-start"
-              }`}
-            >
-              <div
-                className={`max-w-[80%] p-4 rounded-lg ${
-                  message.role === "user"
-                    ? "bg-primary/10 text-primary"
-                    : "bg-secondary/10 text-secondary"
+    <div className="flex-1 overflow-hidden px-4 h-full">
+      <div className="h-full max-w-3xl mx-auto relative">
+        <div className="absolute inset-0 overflow-y-auto p-4 space-y-4">
+          <AnimatePresence>
+            {messages.map((message, index) => (
+              <motion.div
+                key={index}
+                className={`flex ${
+                  message.role === "user" ? "justify-end" : "justify-start"
                 }`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
               >
-                {message.content}
-              </div>
-            </div>
-          ))}
+                <div
+                  className={`max-w-[80%] px-5 h-10 flex items-center justify-center rounded-full text-primary bg-primary/5`}
+                >
+                  {message.content}
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </div>
