@@ -13,9 +13,13 @@ const Navbar = () => {
           bobAi
         </Link>
         <div className="flex gap-4">
-          <Button variant="ghost">
+          <Link
+            href="https://github.com/starc007/whiskey-agent"
+            target="_blank"
+            className="text-primary/80 hover:text-primary"
+          >
             <GithubLogo size={24} />
-          </Button>
+          </Link>
         </div>
       </div>
     </nav>
