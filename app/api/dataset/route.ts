@@ -1,4 +1,6 @@
-export const runtime = "edge";
+"use server";
+
+// export const runtime = "edge";
 
 import { NextResponse } from "next/server";
 import path from "path";
