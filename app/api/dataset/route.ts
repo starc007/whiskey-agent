@@ -1,16 +1,15 @@
-"use server";
-
-// export const runtime = "edge";
+export const runtime = "edge";
 
 import { NextResponse } from "next/server";
-import path from "path";
-import fs from "fs";
 import { parse } from "csv-parse/sync";
 
 export async function GET() {
   try {
-    const csvPath = path.join(process.cwd(), "public", "dataset.csv");
-    const fileContent = fs.readFileSync(csvPath, "utf-8");
+    // Assuming the CSV is in the public directory and accessible via URL
+    const response = await fetch(
+      new URL("/dataset.csv", process.env.NEXT_PUBLIC_BASE_URL)
+    );
+    const fileContent = await response.text();
 
     const rawData = parse(fileContent, {
       columns: true,
