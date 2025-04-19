@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { embedMany } from "ai";
 import { DatasetProduct } from "@/types/types";

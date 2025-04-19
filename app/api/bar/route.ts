@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { BaxusService } from "@/utils/baxus-service";
 
 export async function GET(request: Request) {
