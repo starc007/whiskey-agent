@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import React from "react";
-import { Button } from "../ui/Button";
 import { GithubLogo } from "@phosphor-icons/react";
 
 const Navbar = () => {
   return (
-    <nav className="h-20 flex items-center fixed top-0 w-full z-10 bg-background/80 backdrop-blur-sm">
+    <nav className="h-20 px-4 flex items-center fixed top-0 w-full z-10 bg-background/80 backdrop-blur-sm">
       <div className="flex items-center justify-between container mx-auto">
         <Link href="/" className="text-2xl font-bold">
           bobAi
