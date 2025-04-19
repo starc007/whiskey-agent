@@ -46,34 +46,29 @@ const ChatMessages = ({ messages }: ChatMessagesProps) => {
               </h3>
             ),
             p: ({ children }) => (
-              <p className="mb-3 leading-relaxed">{children}</p>
+              <p className="mb-3 leading-relaxed break-words">{children}</p>
             ),
             ul: ({ children }) => (
               <ul className="space-y-2 my-3">{children}</ul>
             ),
             li: ({ children }) => (
-              <li className="flex gap-2">
-                <span className="text-primary/60">•</span>
-                <span>{children}</span>
+              <li className="flex items-start gap-2">
+                <span className="text-primary/60 mt-1">•</span>
+                <span className="flex-1">{children}</span>
               </li>
             ),
-            table: ({ children }) => (
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-primary/10">
-                  {children}
-                </table>
-              </div>
+            pre: ({ children }) => (
+              <pre className="whitespace-pre-wrap break-words">{children}</pre>
             ),
-            th: ({ children }) => (
-              <th className="px-4 py-2 text-left text-sm font-semibold text-primary/70 bg-primary/5">
+            code: ({ children }) => (
+              <code className="break-words whitespace-pre-wrap">
                 {children}
-              </th>
+              </code>
             ),
-            td: ({ children }) => (
-              <td className="px-4 py-2 text-sm border-t border-primary/10">
-                {children}
-              </td>
+            blockquote: ({ children }) => (
+              <div className="my-2 text-primary/80">{children}</div>
             ),
+            hr: () => <div className="my-2" />,
           }}
         >
           {content}
@@ -83,7 +78,7 @@ const ChatMessages = ({ messages }: ChatMessagesProps) => {
   };
 
   return (
-    <div className="absolute inset-0 overflow-y-auto py-4 space-y-6 max-w-3xl mx-auto hide-scrollbar">
+    <div className="absolute inset-0 overflow-y-auto overflow-x-hidden py-4 space-y-6 max-w-3xl mx-auto hide-scrollbar">
       <AnimatePresence>
         {messages.map((message, index) => (
           <motion.div
@@ -103,10 +98,10 @@ const ChatMessages = ({ messages }: ChatMessagesProps) => {
               )}
             </div>
             <div
-              className={`max-w-[85%] px-6 pt-3 pb-2 rounded-2xl ${
+              className={`px-6 rounded-2xl ${
                 message.role === "user"
                   ? "bg-primary/10 rounded-tr-sm"
-                  : "border border-primary/5"
+                  : "border border-primary/5 pt-3 pb-2"
               }`}
             >
               {formatMessage(message.content)}

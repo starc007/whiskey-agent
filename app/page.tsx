@@ -97,8 +97,9 @@ const HomePage = () => {
 
       // Check if message contains a username lookup request
       const usernameMatch = message.match(
-        /(?:find|lookup|search for|get) (?:details for |info for |data for )?@?(\w+)/i
+        /^(?:find|lookup|search|get|show) (?:details|info|data|collection) (?:for|of) @?(\w+)$/i
       );
+
       if (usernameMatch) {
         const newUsername = usernameMatch[1];
         const data = await fetchUserData(newUsername);
@@ -226,7 +227,7 @@ const HomePage = () => {
 
       {/* Chat Input */}
       <motion.div
-        className="w-full"
+        className="w-full ml-5"
         initial={false}
         animate={{
           y: isInputExpanded ? "0%" : "-60%",
