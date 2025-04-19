@@ -103,7 +103,7 @@ const ChatMessages = ({ messages }: ChatMessagesProps) => {
               )}
             </div>
             <div
-              className={`max-w-[85%] px-6 py-0 rounded-2xl ${
+              className={`max-w-[85%] px-6 pt-3 pb-2 rounded-2xl ${
                 message.role === "user"
                   ? "bg-primary/10 rounded-tr-sm"
                   : "border border-primary/5"

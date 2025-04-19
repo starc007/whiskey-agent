@@ -2,7 +2,7 @@ import { DatasetProduct } from "@/types/types";
 
 export class EmbeddingService {
   private static embeddings: Map<string, number[]> = new Map();
-  private static isInitialized = false;
+  static isInitialized = false;
 
   static async initialize(dataset: DatasetProduct[]) {
     if (this.isInitialized) return;

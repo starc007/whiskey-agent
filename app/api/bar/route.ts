@@ -1,12 +1,23 @@
 import { BaxusService } from "@/utils/baxus-service";
 
-const USERNAME = "carriebaxus";
-
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    console.log("Fetching bar data...");
+    // Get username from URL params
+    const { searchParams } = new URL(request.url);
+    const username = searchParams.get("username");
+
+    if (!username) {
+      return Response.json(
+        {
+          success: false,
+          error: "Username is required",
+        },
+        { status: 400 }
+      );
+    }
+
     const response = await fetch(
-      "https://services.baxus.co/api/bar/user/carriebaxus",
+      `https://services.baxus.co/api/bar/user/${username}`,
       {
         method: "GET",
         headers: {
@@ -15,6 +26,7 @@ export async function GET() {
         next: { revalidate: 3600 }, // Cache for 1 hour
       }
     );
+
     const userBar = await response.json();
     if (userBar.length === 0) {
       return Response.json({
@@ -22,6 +34,7 @@ export async function GET() {
         error: "No bar data found",
       });
     }
+
     const analysis = BaxusService.analyzeCollection(userBar);
 
     return Response.json({

@@ -30,7 +30,7 @@ const Suggestion = ({ onSuggestionClick }: SuggestionProps) => {
         <h3 className="text-lg font-medium text-center mb-6">
           Here are some ways I can help you with your whisky collection
         </h3>
-        <div className="flex flex-wrap justify-center gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 place-items-center max-w-lg mx-auto">
           {suggestions.map((suggestion, index) => (
             <button
               key={index}
