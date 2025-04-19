@@ -21,10 +21,37 @@
     text-decoration: none;
     cursor: pointer;
   }
+  .prose {
+    max-width: none;
+  }
+  .prose p {
+    margin: 0.75em 0;
+  }
+  .prose ol {
+    margin: 0.75em 0;
+    padding-left: 1em;
+  }
+  .prose ol > li {
+    padding-left: 0.375em;
+    margin: 0.5em 0;
+  }
+  .prose strong {
+    color: theme("colors.primary.DEFAULT");
+    font-weight: 600;
+  }
 }
 
 body {
   background: var(--background);
   color: var(--primary);
   @apply font-sans;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }

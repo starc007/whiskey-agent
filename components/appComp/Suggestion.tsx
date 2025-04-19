@@ -17,14 +17,6 @@ const suggestions = [
     title: "Price Range",
     description: "Find recommendations within my budget",
   },
-  {
-    title: "Regional Exploration",
-    description: "Discover whiskies from specific regions",
-  },
-  {
-    title: "Flavor Profile",
-    description: "Find whiskies with specific taste notes",
-  },
 ];
 
 interface SuggestionProps {
@@ -38,18 +30,18 @@ const Suggestion = ({ onSuggestionClick }: SuggestionProps) => {
         <h3 className="text-lg font-medium text-center mb-6">
           Here are some ways I can help you with your whisky collection
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="flex flex-wrap justify-center gap-5">
           {suggestions.map((suggestion, index) => (
             <button
               key={index}
-              className="flex flex-col gap-2 p-4 rounded-2xl border border-primary/5 
+              className="w-fit flex flex-col gap-2 p-4 rounded-2xl border border-primary/5 
                 hover:bg-primary/5 transition-colors duration-200 text-left"
               onClick={() => onSuggestionClick?.(suggestion.title)}
             >
               <h4 className="font-medium text-primary/80">
                 {suggestion.title}
               </h4>
-              <p className="text-sm text-primary/40">
+              <p className="text-sm text-primary/40 max-w-64">
                 {suggestion.description}
               </p>
             </button>

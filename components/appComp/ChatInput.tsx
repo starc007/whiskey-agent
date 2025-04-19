@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "../ui/Button";
 import { ArrowUp } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const ChatInput = ({ onSendMessage }: ChatInputProps) => {
-  const [message, setMessage] = useState("");
-
+const ChatInput = ({ onSendMessage, value, onChange }: ChatInputProps) => {
   const handleSubmit = () => {
-    if (message.trim()) {
-      onSendMessage(message);
-      setMessage("");
+    if (value.trim()) {
+      onSendMessage(value);
     }
   };
 
@@ -33,8 +32,8 @@ const ChatInput = ({ onSendMessage }: ChatInputProps) => {
         className="w-full p-4 focus:outline-none rounded-3xl resize-none border border-primary/5"
         placeholder="Ask Bob about whisky recommendations..."
         rows={3}
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        value={value}
+        onChange={onChange}
         onKeyPress={handleKeyPress}
       />
       <Button
@@ -42,7 +41,7 @@ const ChatInput = ({ onSendMessage }: ChatInputProps) => {
         size="icon"
         className="absolute right-4 bottom-4 rounded-full hover:bg-primary/5 border border-primary/10"
         onClick={handleSubmit}
-        disabled={!message.trim()}
+        disabled={!value.trim()}
       >
         <ArrowUp size={20} className="hover:rotate-45 duration-300" />
       </Button>
